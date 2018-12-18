@@ -10,6 +10,7 @@
   
   // welcome#index
   
+  // header
   .header-image {
     background-image: url(/assets/header.jpg);
     height: 600px;
@@ -17,4 +18,48 @@
     background-size: cover;
     opacity: 0.8;
   }
+  
+  .text-main {
+    font-size: 36px;
+    color: white;
+    padding-top: 200px;
+  }
+  
+  .text-sub {
+    font-size: 15px;
+    color: white;
+  }
+  
+  .btn {
+    margin-right: 10px;
+  }
+  
+  // func
+  
+  .functions  {
+    margin-top: 50px;
+    height: 275px;
+    vertical-align: middle;
+    
+    .func {
+      margin-top: 30px;
+      width: 33%;
+      display: inline-block;
+      
+      .func-icon {
+        font-size: 48px;
+      }
+    }
+  }
+  
+  .footer {
+    height: 275px;
+    background-color: #fafafa;
+    text-align: center;
+    
+    h3 {
+     padding-top: 50px;
+    }
+  }
+ 
   
