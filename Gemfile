@@ -43,11 +43,15 @@ gem 'twitter-bootstrap-rails'
 gem 'sprockets', '3.6.3'
 gem 'execjs'
 
+
 #devise
 gem 'devise'
 
 #font-awesome
 gem "font-awesome-rails"
+
+#jquery
+gem "jquery-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
