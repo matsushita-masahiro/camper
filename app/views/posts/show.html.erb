@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="user-wrap">
+        <h4>投稿者</h4>
+        <h5><%= @post.user.name %></h5>
+        <p><%= @post.user.intro %></p>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="post-wrap">
+        <p><%= @post.body %></p>
+        <%= image_tag @post.files.first.url %>
+      </div>
+    </div>
+  </div>
+  
+</div>

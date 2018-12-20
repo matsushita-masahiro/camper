@@ -24,7 +24,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li></li>
+              <li><%= link_to "投稿一覧",posts_path %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to "登録する", new_user_registration_path %></li>
               <li><%= link_to "ログイン", new_user_session_path %></li>
@@ -35,14 +36,17 @@
     </nav>
     
     <div class="main-page">
-      <% if notice %>
-        <br>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <br>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
+      <div class="container">
+        <% if notice %>
+          <br>
+          <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <br>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+      </div>
+      
       
       <%= yield %>
       

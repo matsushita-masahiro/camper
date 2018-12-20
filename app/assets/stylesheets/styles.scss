@@ -75,7 +75,7 @@
   
   // posts index
   
-  .post-btn  {
+  .btn-post  {
     width: 100px;
     height: 100px;
     background: #ea4335;
@@ -93,6 +93,40 @@
     }
     
     &:hover {
-      opacity: 0.5;
+      opacity: 0.8;
+    }
+  }
+  
+  .btn-secondary {
+    color: white;
+    background-color: #aaa;
+    
+    &:hover {
+      opacity: 0.9;
+      color: white;
+    }
+  }
+  
+  .tab-pane {
+    
+    .post-list {
+      margin: 25px auto;
+      padding: 0;
+      text-align: center;
+      
+      li {
+        list-style: none;
+        display: inline-block;
+        margin-top: 3px;
+        
+        img {
+          width: 360px;
+          height: 240px;
+          
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
     }
   }
