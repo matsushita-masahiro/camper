@@ -88,7 +88,7 @@
     right: 50px;
 
     i {
-      font-size: 48px;
+      font-size: 36px;
       color: white;
     }
     
@@ -126,6 +126,44 @@
           &:hover {
             opacity: 0.8;
           }
+        }
+      }
+    }
+  }
+  
+  // post show
+  
+  .user-wrap {
+    text-align: center;
+    border: 1px solid silver;
+    margin-top: 25px;
+    height: 300px;
+    width: 240px;
+    
+    .user-img {
+      background: $navbar-bg;
+      border: 1px solid $navbar-bd;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      margin: 25px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  .post-wrap {
+    margin: 25px auto;
+    
+    ul.post-files {
+      list-style: none;
+      
+      li {
+        
+        img {
+          width: 360px;
+          height: 240px;
         }
       }
     }

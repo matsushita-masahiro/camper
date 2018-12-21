@@ -2,15 +2,22 @@
   <div class="row">
     <div class="col-md-3">
       <div class="user-wrap">
-        <h4>投稿者</h4>
+        <div class="user-img">
+        </div>
         <h5><%= @post.user.name %></h5>
         <p><%= @post.user.intro %></p>
       </div>
     </div>
     <div class="col-md-9">
       <div class="post-wrap">
+        <ul class="post-files">
+          <% @post.files.each do |file| %>
+          <li>
+            <%= image_tag file.url %>
+          </li>
+          <% end %>
+        </ul>
         <p><%= @post.body %></p>
-        <%= image_tag @post.files.first.url %>
       </div>
     </div>
   </div>

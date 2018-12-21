@@ -38,17 +38,14 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 #bootstrap
 gem 'therubyracer'
-gem 'less-rails'
+gem 'less-rails', git: 'https://github.com/MustafaZain/less-rails'
 gem 'twitter-bootstrap-rails'
-gem 'sprockets', '3.6.3'
+gem 'sprockets', '3.7.2'
 gem 'execjs'
 
 
 #devise
 gem 'devise'
-
-#font-awesome
-gem "font-awesome-rails"
 
 #jquery
 gem "jquery-rails"
