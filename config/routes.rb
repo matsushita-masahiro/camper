@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   resources :users, only:[:update]
   resources :relationships, only:[:create]
   resources :rooms, only:[:create,:show]
-  resources :events, only:[:index,:create]
+  resources :events, only:[:index,:create,:show]
 end

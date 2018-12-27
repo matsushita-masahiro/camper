@@ -8,5 +8,7 @@ class User < ApplicationRecord
   has_many :rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :events, dependent: :destroy
+  has_many :event_members, dependent: :destroy
   mount_uploader :image, ImageUploader
 end

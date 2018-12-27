@@ -18,6 +18,16 @@ class EventsController < ApplicationController
     
   end
   
+  def show
+    @event = Event.find(params[:id])
+    @user = current_user
+    @members = @event.event_members.all
+    
+    @relation_flg = Relationship.where(user_id: current_user.id, friend_id: @event.user_id).empty?
+    @relationship = Relationship.new
+    
+  end
+  
   private
     
     def event_params

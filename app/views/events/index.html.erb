@@ -1,14 +1,19 @@
 <div class="container">
   <h1 class="text-center">イベント一覧</h1>
-  <ul>
+  <ul class = event-list>
     <% @events.each do |event| %>
       <li>
-      <% url = event.files.first.url %>
-        <% if isPicture?(url) %>
-          <%= image_tag(url) %>
-        <% elsif isVideo?(url) %>
-          <%= video_tag(url,autoplay: true, loop: true) %>
+        <% if isPicture?(event.files.first.url) %>
+          <%= link_to image_tag(event.files.first.url), event_path(event) %>
+        <% elsif isVideo?(event.files.first.url) %>
+          <%= link_to video_tag(event.files.first.url,autoplay: true, loop: true), event_path(event) %>
         <% end %>
+        <%= event.title %>
+        <%= event.body %>
+        <%= event.place %>
+        <%= event.recruit_num %>人
+        <%= event.event_date %>
+        <%= event.deadline %>
       </li>
     <% end %>
   </ul>
@@ -19,6 +24,7 @@
   <i class="fas fa-pen"></i>
 </button>
 
+<!--modal-->
 <div class="modal fade" id="newEventModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
