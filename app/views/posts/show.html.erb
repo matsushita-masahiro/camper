@@ -3,9 +3,33 @@
     <div class="col-md-3">
       <div class="user-wrap">
         <div class="user-img">
+          <% if @post.user.image? %>
+            <%= image_tag(@post.user.image.url) %>
+          <% else %>
+            <%= image_tag("user.jpg") %>
+          <% end %>
         </div>
-        <h5><%= @post.user.name %></h5>
-        <p><%= @post.user.intro %></p>
+        <div class="user-info">
+          <h5><%= @post.user.name %></h5>
+          <p><%= @post.user.intro %></p>
+        </div>
+      </div>
+      <div class="btn-wrap">
+        <br>
+        <% if @post.user.id == current_user.id %>
+        <!-- Button trigger modal -->
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editUserModal">
+            ユーザー情報を編集する
+          </button>
+        <% else %>
+          <% if @relation_flg %>
+            <%= form_for @relationship, :url => {controller: 'relationships',action: 'create', friend_id: @post.user.id } do |f| %>
+             <%= f.submit "友達申請", class: "btn btn-success" %>
+            <% end %>
+          <% else %>
+            <span class="btn btn-secondary">申請済み</span>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="col-md-9">
@@ -13,13 +37,29 @@
         <ul class="post-files">
           <% @post.files.each do |file| %>
           <li>
-            <%= image_tag file.url %>
+            <% if isPicture?(file.url) %>
+              <%= image_tag file.url %>
+            <% elsif isVideo?(file.url)%>
+              <%= video_tag file.url, controls: true %>
+            <% end %>
           </li>
           <% end %>
         </ul>
         <p><%= @post.body %></p>
+        <p><%= @likes.count %> いいね</p>
       </div>
+      <% if @likes.where(user_id: current_user.id).empty? %>
+        <%= form_for @like, :url => {controller: 'likes', action: 'create',post_id: @post.id } do |f| %>
+          <%= button_tag :type => "submit", :class =>"btn btn-danger" do %>
+            Like <i class="fas fa-heart"></i>
+          <% end %>
+        <% end %>
+      <% else %>
+        <span class="btn btn-secondary">Like <i class="fas fa-heart"></i></span>
+      <% end %>
     </div>
   </div>
-  
 </div>
+
+<!--modal for edit user-->
+<%= render "share/editUserModal" %>

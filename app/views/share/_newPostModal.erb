@@ -1,0 +1,24 @@
+<div class="modal fade" id="newPostModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="newPostModalLabel">新しく投稿する</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for @post do |f| %>
+          <%= f.text_area :body, class: "form-control", placeholder: "ここに入力してください" %>
+          <br>
+          <%= f.file_field :files, multiple: true %>
+          <br>
+          <%= f.submit "投稿する", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

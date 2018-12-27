@@ -8,10 +8,15 @@ class PostsController < ApplicationController
   
   def show
     @post = Post.find(params[:id])
+    @likes = Like.where(post_id: @post.id)
+    @like = Like.new
+    @user = current_user
+    @relationship = Relationship.new
+    @relation_flg = Relationship.where(user_id: current_user.id, friend_id: @post.user_id).empty?
   end
   
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     
     if @post.save
       flash[:notice] = "投稿に成功しました"
@@ -25,6 +30,6 @@ class PostsController < ApplicationController
   private
     
     def post_params
-      params.require(:post).permit(:body,{files:[]},:user_id)
+      params.require(:post).permit(:body,{files:[]})
     end
 end

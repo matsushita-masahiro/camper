@@ -117,12 +117,14 @@
       li {
         list-style: none;
         display: inline-block;
-        margin-top: 3px;
+        margin: 3px 3px;
+        width: 360px;
+        height: 240px;
         
-        img {
+        img,video {
           width: 360px;
           height: 240px;
-          
+          vertical-align: middle;
           &:hover {
             opacity: 0.8;
           }
@@ -136,20 +138,37 @@
   .user-wrap {
     text-align: center;
     border: 1px solid silver;
-    margin-top: 25px;
+    margin: 25px auto;
     height: 300px;
     width: 240px;
     
     .user-img {
-      background: $navbar-bg;
-      border: 1px solid $navbar-bd;
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      margin: 25px auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      
+      img {
+        background: $navbar-bg;
+        border: 1px solid $navbar-bd;
+        border-radius: 50%;
+        width: 125px;
+        height: 125px;
+        margin: 25px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    
+    .user-info {
+      padding: 0px 10px;
+    }
+  }
+  
+  // btn
+  
+  .btn-wrap {
+    text-align: center;
+    
+    .btn {
+      width: 80%;
     }
   }
   
@@ -158,12 +177,20 @@
     
     ul.post-files {
       list-style: none;
+      overflow-x: auto;
+      white-space: nowrap;
       
       li {
+        display: inline-block;
         
-        img {
-          width: 360px;
-          height: 240px;
+        img,video {
+          width: 600px;
+          height: 400px;
+          vertical-align: middle;
+          
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
     }

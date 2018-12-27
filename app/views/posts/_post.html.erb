@@ -1,0 +1,9 @@
+<li>
+  <% if post.files? %>
+    <% if isPicture?(post.files.first.url) %>
+      <%= link_to image_tag(post.files.first.url), post_path(post) %>
+    <% elsif isVideo?(post.files.first.url) %>
+      <%= link_to video_tag(post.files.first.url,autoplay: true,loop: true), post_path(post) %>
+    <% end %>
+  <% end %>
+</li>
