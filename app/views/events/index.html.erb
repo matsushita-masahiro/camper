@@ -3,17 +3,25 @@
   <ul class = event-list>
     <% @events.each do |event| %>
       <li>
-        <% if isPicture?(event.files.first.url) %>
-          <%= link_to image_tag(event.files.first.url), event_path(event) %>
-        <% elsif isVideo?(event.files.first.url) %>
-          <%= link_to video_tag(event.files.first.url,autoplay: true, loop: true), event_path(event) %>
-        <% end %>
-        <%= event.title %>
-        <%= event.body %>
-        <%= event.place %>
-        <%= event.recruit_num %>人
-        <%= event.event_date %>
-        <%= event.deadline %>
+        <div class="event-owner">
+          <% if event.user.image? %>
+            <%= image_tag(event.user.image.url(:thumb)) %>
+          <% else %>
+            <%= image_tag("user.jpg") %>
+          <% end %>
+          <%= event.user.name %>
+        </div>
+        <h4><%= event.title %></h4>
+        <div class="event-photo">
+          <% if isPicture?(event.files.first.url) %>
+            <%= link_to image_tag(event.files.first.url(:medium)), event_path(event) %>
+          <% elsif isVideo?(event.files.first.url) %>
+            <%= link_to video_tag(event.files.first.url,autoplay: true, loop: true, width: "300px"), event_path(event) %>
+          <% end %>
+        </div>
+        <p><i class="fas fa-campground"></i> <%= event.place %></p>
+        <p><i class="fas fa-calendar-alt"></i> <%= event.event_date.strftime("%Y年 %m月 %d日") %></p>
+        <p><i class="fas fa-male"></i> <%= event.recruit_num %>人</p>
       </li>
     <% end %>
   </ul>

@@ -2,7 +2,12 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, :only => [:index,:show,:create]
   
   def index
-    @posts = Post.all
+    # 友達のみ（未設定）
+    @friend_posts = Post.all
+    # 降順
+    @new_posts = Post.order("created_at desc")
+    # いいねがない場合表示されない
+    @hot_posts = Post.joins(:like).group(:id).order("count(posts.id) desc") 
     @post = Post.new
   end
   
@@ -12,7 +17,15 @@ class PostsController < ApplicationController
     @like = Like.new
     @user = current_user
     @relationship = Relationship.new
-    @relation_flg = Relationship.where(user_id: current_user.id, friend_id: @post.user_id).empty?
+    @message = Message.new
+    
+    room_id = searchRoomId(@post.user_id,current_user.id)
+    if room_id == 0
+      @room = Room.new
+    else
+      @room = Room.find(room_id)
+    end
+    
   end
   
   def create

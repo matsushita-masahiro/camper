@@ -8,4 +8,12 @@ Rails.application.routes.draw do
   resources :relationships, only:[:create]
   resources :rooms, only:[:create,:show]
   resources :events, only:[:index,:create,:show]
+  resources :rooms, only:[:show]
+  
+  resources :messages do
+    member do
+      post 'make'
+    end
+  end
+  resources :messages, only:[:create,:make]
 end

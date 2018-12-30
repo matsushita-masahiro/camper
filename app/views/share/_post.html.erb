@@ -1,0 +1,16 @@
+<ul class ="post-list" >
+  <% posts.each do |post| %>
+    <li>
+      <% if post.files? %>
+        <% if isPicture?(post.files.first.url) %>
+          <%= link_to image_tag(post.files.first.url(:medium)), post_path(post) %>
+        <% elsif isVideo?(post.files.first.url) %>
+          <%= link_to video_tag(post.files.first.url,autoplay: true,loop: true,width: "300px" ), post_path(post) %>
+        <% end %>
+      <% end %>
+      <div class="like-icon">
+        <i class="fas fa-heart"> <%= Like.where(post_id: post.id).count %></i>
+      </div>
+    </li>
+  <% end %>
+</ul>

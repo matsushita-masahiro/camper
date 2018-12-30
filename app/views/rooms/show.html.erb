@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 text-center">
+      <h4><%= @room.name %></h4>
+      <hr>
+      <h4>参加者</h4>
+      <% @entries.each do |e| %>
+        <h5><strong><%= e.user.name %></strong></h5>
+      <% end %>
+    </div>
+    <div class="col-md-9">
+      <% if @messages.present? %>
+        <% @messages.each do |m| %>
+          <% if m.user_id == current_user.id %>
+            <h4 class="text-right">
+              <p class="alert alert-success">
+                <%= m.body %>
+                <br><br>
+                <small>
+                  <strong>
+                    <%= m.user.name %>
+                  </strong>
+                </small>
+              </p>
+            </h4>
+          <% else %>
+            <h4 class="text-left">
+              <p class="alert alert-info">
+                <%= m.body %>
+                <br><br>
+                <small>
+                  <strong>
+                    <%= m.user.name %>
+                  </strong>
+                </small>
+              </p>
+            </h4>
+          <% end %>
+        <% end %>
+      <% end %>
+      <hr>
+      <div class="text-center">
+        <%= form_for @message do |f| %>
+          <%= f.text_field :body, class: "form-control",placeholder:"ここに入力してください" %>
+          <%= f.hidden_field :room_id, value: @room.id %>
+          <br>
+          <%= f.submit "送信する", class:"btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

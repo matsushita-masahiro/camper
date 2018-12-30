@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_one :like, dependent: :destroy
+  has_many :like, dependent: :destroy
   mount_uploaders :files, FilesUploader
 end

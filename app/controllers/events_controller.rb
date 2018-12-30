@@ -22,10 +22,16 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @user = current_user
     @members = @event.event_members.all
-    
-    @relation_flg = Relationship.where(user_id: current_user.id, friend_id: @event.user_id).empty?
     @relationship = Relationship.new
+    @message = Message.new
     
+    room_id = searchRoomId(@event.user_id,current_user.id)
+    if room_id == 0
+      @room = Room.new
+    else
+      @room = Room.find(room_id)
+    end
+
   end
   
   private
