@@ -11,4 +11,12 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :event_members, dependent: :destroy
   mount_uploader :image, ImageUploader
+  
+  def self.search(search)
+    if search
+      User.where(['name LIKE ?', "%#{search}%"])
+    else
+      User.all
+    end
+  end
 end

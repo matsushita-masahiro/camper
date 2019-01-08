@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-3">
+      <h3 class = "text-center" >ユーザーの情報</h3>
+      <%= render "share/userInfo", user: @user %>
+    </div>
+    
+    <div class="col-md-9">
+      <h3 class = "text-center" >ユーザーの投稿</h3>
+      <%= render "share/post", posts: @posts %>
+    </div>
+  </div>
+  
+</div>

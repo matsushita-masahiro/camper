@@ -1,6 +1,20 @@
 <div class="container">
+  <% if current_user.id == @event.user_id %>
+    <%= link_to "編集する", edit_event_path(@event), class: "event-header btn btn-primary" %>
+  <% else %>
+    <% if EventMember.where(user_id: current_user.id ,event_id: @event.id).exists? %>
+      <span class="event-header btn btn-secondary">参加済み</span>
+    <% else %>
+      <%= form_for @event_member do |f| %>
+        <%= f.hidden_field :event_id, value: @event.id %>
+        <%= f.submit "参加する", class: "event-header btn btn-primary" %>
+      <% end %>
+    <% end %>
+  <% end %>
+  
   <h1 class="text-center"><%= @event.title %></h1>
   <div class="row">
+    <!--企画者情報-->
     <div class="col-md-3">
       <h3 class= "text-center">企画者</h3>
       <div class="user-wrap">
@@ -42,6 +56,8 @@
       <% end %>
       </div>
     </div>
+    
+    <!--イベント情報-->
     <div class="col-md-9">
       <div class="article-wrap">
         <ul class="article-files">
@@ -57,32 +73,20 @@
         </ul>
         <h4>企画の詳細</h4>
         <p><%= @event.body %></p>
-        企画の詳細はここ
+        <p><i class="fas fa-map-marked-alt"></i> <%= @event.place %></p>
+        <p><i class="fas fa-calendar-alt"></i> <%= @event.event_date.strftime("%Y年%m月%d日") %></p>
+        <p><i class="fas fa-user-circle"></i> <%= @event.recruit_num %>人</p>
       </div>
     </div>
   </div>
   
-  <div class="member">
-    <ul class="user-list">
-      <% @members.each do |member| %>
-        <li>
-          <% if member.user.image? %>
-            <%= image_tag(member.user.image.url) %>
-          <% else %>
-            <%= image_tag("user.jpg") %>
-          <% end %>
-          <%= member.user.name %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <!--参加者情報-->
+  <h4>参加者</h4>
+  <%= render "events/userList", members: @fixed_members %>
+  <h4>参加希望者</h4>
+  <%= render "events/userList", members: @pre_members %>
+  
 </div>
-<!--trigger-->
-<% if @event.user.id == current_user.id %>
-  <button type="button" class="btn btn-post" data-toggle="modal" data-target="#newPostModal">
-    <i class="fas fa-pen"></i>
-  </button>
-<% end %> 
 
 <!--modal-->
 <!--modal for edit user-->

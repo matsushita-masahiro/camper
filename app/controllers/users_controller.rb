@@ -1,5 +1,19 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, :only => [:update]
+  before_action :authenticate_user!, :only => [:update,:index,:show]
+  
+  def index
+    @users = User.search(params[:search])
+    @relationship = Relationship.new
+    @message = Message.new
+  end
+  
+  def show
+    @user = User.find(params[:id])
+    @relationship = Relationship.new
+    @message = Message.new
+    @room = enterRoom(current_user.id,@user.id)
+    @posts = Post.where(user_id: @user.id)
+  end
    
   def update
     @user = current_user

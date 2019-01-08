@@ -1,9 +1,18 @@
 <div class="container">
   <h1 class="text-center">イベント一覧</h1>
+  
+  <div class="text-center">
+    <%= form_tag events_path, method: 'get' do %>
+      <%= text_field :search, :user_name ,placeholder: "ユーザ名"%>
+      <%= text_field :search, :title, placeholder: "イベント名" %>
+      <%= text_field :search, :place, placeholder: "開催地" %>
+      <%= submit_tag "検索する", class:"btn btn-primary" %>
+    <% end %>
+  </div>
   <ul class = event-list>
     <% @events.each do |event| %>
       <li>
-        <div class="event-owner">
+        <div class="event-owner text-left">
           <% if event.user.image? %>
             <%= image_tag(event.user.image.url(:thumb)) %>
           <% else %>
@@ -11,7 +20,7 @@
           <% end %>
           <%= event.user.name %>
         </div>
-        <h4><%= event.title %></h4>
+        <h4 class="text-left"><%= event.title %></h4>
         <div class="event-photo">
           <% if isPicture?(event.files.first.url) %>
             <%= link_to image_tag(event.files.first.url(:medium)), event_path(event) %>
@@ -19,9 +28,11 @@
             <%= link_to video_tag(event.files.first.url,autoplay: true, loop: true, width: "300px"), event_path(event) %>
           <% end %>
         </div>
-        <p><i class="fas fa-campground"></i> <%= event.place %></p>
-        <p><i class="fas fa-calendar-alt"></i> <%= event.event_date.strftime("%Y年 %m月 %d日") %></p>
-        <p><i class="fas fa-male"></i> <%= event.recruit_num %>人</p>
+        <div class="text-left">
+          <p><i class="fas fa-map-marked-alt"></i> <%= event.place %></p>
+          <p><i class="fas fa-calendar-alt"></i> <%= event.event_date.strftime("%Y年%m月%d日") %></p>
+          <p><i class="fas fa-user-circle"></i> <%= event.recruit_num %>人</p>
+        </div>
       </li>
     <% end %>
   </ul>
