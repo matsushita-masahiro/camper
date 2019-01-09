@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!, :only => [:create,:make]
+  before_action :correct_referrer
   
   def make
     @room = Room.create
@@ -29,4 +30,12 @@ class MessagesController < ApplicationController
     def message_params2
       params.require(:message).permit(:body,:user_id,:room_id).merge(user_id: current_user.id,room_id: @room.id)
     end
+
+    def correct_referrer
+      if request.referer.nil?
+        flash[:alert] = "無効なアクセス"
+        redirect_to root_url
+      end
+    end
+
 end

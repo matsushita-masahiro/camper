@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, :only => [:index,:create,:edit,:show,:update]
+  before_action :correct_referrer
   
   def index
     @event = Event.new
@@ -21,7 +22,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @event_member = EventMember.new
-    @user = current_user
     @pre_members = EventMember.where(event_id: @event.id,status: 0)
     @fixed_members = EventMember.where(event_id: @event.id,status: 1)
     @relationship = Relationship.new
@@ -54,6 +54,13 @@ class EventsController < ApplicationController
     
     def event_params
       params.require(:event).permit(:title,{files:[]},:body,:place,:recruit_num,:event_date,:deadline).merge( user_id: current_user.id )
+    end
+    
+    def correct_referrer
+      if request.referer.nil?
+        flash[:alert] = "無効なアクセス"
+        redirect_to root_url
+      end
     end
     
 end

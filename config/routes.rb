@@ -17,5 +17,11 @@ Rails.application.routes.draw do
   end
   resources :messages, only:[:create,:make]
   
-  resources :event_members, only:[:create,:update]
+  resources :event_members do
+    collection do
+      post 'change'
+    end
+  end
+  
+  resources :event_members, only:[:create,:change]
 end

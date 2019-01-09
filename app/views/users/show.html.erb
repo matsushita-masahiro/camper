@@ -3,7 +3,7 @@
     
     <div class="col-md-3">
       <h3 class = "text-center" >ユーザーの情報</h3>
-      <%= render "share/userInfo", user: @user %>
+      <%= render "share/userInfo", user: @user, relationship: @relationship, room: @room %>
     </div>
     
     <div class="col-md-9">
@@ -11,5 +11,10 @@
       <%= render "share/post", posts: @posts %>
     </div>
   </div>
-  
 </div>
+
+<!--modal to edit user-->
+<%= render 'share/editUserModal', user: current_user %>
+
+<!--modal to start chat-->
+<%= render 'share/startChatModal', message: @message, user_id: @user.id %>

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :only => [:index,:show,:create]
+  before_action :correct_referrer
   
   def index
     # 友達のみ（未設定）
@@ -45,4 +46,12 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:body,{files:[]})
     end
+
+    def correct_referrer
+      if request.referer.nil?
+        flash[:alert] = "無効なアクセス"
+        redirect_to root_url
+      end
+    end
+
 end

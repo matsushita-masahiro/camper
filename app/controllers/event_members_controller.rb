@@ -1,5 +1,6 @@
 class EventMembersController < ApplicationController
-  before_action :authenticate_user!, :only => [:create,:update]
+  before_action :authenticate_user!, :only => [:create,:change]
+  before_action :correct_referrer
   
   def create
     
@@ -13,12 +14,34 @@ class EventMembersController < ApplicationController
     
   end
   
-  def update
+  def change
+    ids = params[:user_id]
+    
+    ids.each do |user_id|
+      member = EventMember.find_by(event_id: params[:event_id], user_id: user_id)
+      
+      if member.status == 0
+        member.update_attribute(:status, 1)
+      elsif member.status == 1
+        member.update_attribute(:status, 0)
+      end
+    end
+    
+    redirect_to event_url(params[:event_id])
   end
+  
   
   private
     
     def event_member_params
       params.require(:event_member).permit(:event_id,:user_id).merge(user_id: current_user.id)
     end
+    
+    def correct_referrer
+      if request.referer.nil?
+        flash[:alert] = "無効なアクセス"
+        redirect_to root_url
+      end
+    end
+    
 end

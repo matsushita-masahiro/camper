@@ -19,7 +19,7 @@
         <% end %>
         <% @room = enterRoom(current_user.id,member.user_id) %>
         <% if @room.id.nil?  %>
-          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#startChatModal">
+          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#startChatModal" id="<%=member.user_id%>" >
             チャットを始める
           </button>
         <% else %>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, :only => [:update,:index,:show]
+  before_action :correct_referrer
   
   def index
     @users = User.search(params[:search])
@@ -30,6 +31,13 @@ class UsersController < ApplicationController
     
     def user_params
       params.require(:user).permit(:image,:name,:intro)
+    end
+    
+    def correct_referrer
+      if request.referer.nil?
+        flash[:alert] = "無効なアクセス"
+        redirect_to root_url
+      end
     end
   
 end

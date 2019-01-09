@@ -1,0 +1,23 @@
+<!--modal to start chat -->
+<div class="modal fade" id="startChatModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="startChatModalLabel">チャットを始める</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for message, :url => {controller:"messages",action: "make",user_id: user_id} do |f| %>
+          <%= f.text_field :body, class: "form-control",placeholder: "ここに入力してください" %>
+          <br>
+          <%= f.submit "送信する", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
