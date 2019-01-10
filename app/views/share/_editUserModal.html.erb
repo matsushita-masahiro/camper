@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= form_for user, :url => {controller: 'users', action: 'update'} do |f| %>
+        <%= form_for user, :url => {controller: 'users', action: 'update',id: user.id} do |f| %>
           <%= f.file_field :image %>
           <br>
           <%= f.text_field :name, class: "form-control my-form",placeholder: "名前" %>

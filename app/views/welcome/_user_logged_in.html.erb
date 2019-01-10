@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'share/userInfo', user: current_user %>
+    </div>
+    <div class="col-md-9">
+      <br>
+      <!--タブの部分-->
+      <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a href="#event-tab" data-toggle="tab">Events</a></li>
+        <li><a href="#friend-tab" data-toggle="tab">Friends</a></li>
+        <li><a href="#chat-tab" data-toggle="tab">Chats</a></li>
+      </ul>
+      
+      <!--タブの中身-->
+      <div class="tab-content">
+        <div class="tab-pane fade active in" id="event-tab">
+          <br>
+          <h4 class="text-center">開催イベント</h4>
+          <%= render 'share/event', events: @host_events %>
+          <h4 class="text-center">参加イベント</h4>
+          <%= render 'share/event', events: @events %>
+        </div>
+        
+        <div class="tab-pane fade" id="friend-tab">
+          <hr>
+          <% @friends.each do |friend|%>
+            <% if friend.user_id == current_user.id %>
+              <%= User.find(friend.friend_id).name %>
+            <% else %>
+              <%= User.find(friend.user_id).name %> 
+            <% end %>
+            <hr>
+          <% end %>
+        </div>
+        
+        <div class="tab-pane fade" id="chat-tab">
+          <hr>
+          <% @rooms.each do |room| %>
+            <h5><%= link_to "#{room.name}", room_path(room) %></h5>
+            <%= room.entries.first.user.name %>
+            <br>
+            <%= room.entries.second.user.name %>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!--modal-->
+<%= render 'share/editUserModal', user: current_user %>

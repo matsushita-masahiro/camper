@@ -1,53 +1,5 @@
-<!--header-->
-<div class="header-image">
-  <div class="container text-center">
-    <h1 class="text-main">Connecting Camp-lovers with Campers</h1>
-    <p class="text-sub">キャンプ好きを結びつけるソーシャルアプリです。</p>
-    <br>
-    <%= link_to "新規登録する", new_user_registration_path, class:"btn btn-info" %>
-    <%= link_to "ログインする", new_user_session_path, class:"btn btn-primary" %>
-  </div>
-</div>
-
-<!--func-->
-<div class="functions container">
-  <h3 class="text-center">Campersの３つの機能</h2>
-  <div class="func">
-    <div class="func-icon text-center">
-      <i class="fas fa-camera-retro"></i>
-    </div>
-    <div class="func-text text-center">
-      <h4>投稿する</h4>
-      <p>あなたの活動を投稿できます。</p>
-    </div>
-  </div>
-  <div class="func">
-    <div class="func-icon text-center">
-      <i class="fas fa-campground"></i>
-    </div>
-    <div class="func-text text-center">
-      <h4>企画する</h4>
-      <p>キャンプの企画、参加メンバーの募集ができます。</p>
-    </div>
-  </div>
-  <div class="func">
-    <div class="func-icon text-center">
-      <i class="fas fa-comments"></i>
-    </div>
-    <div class="func-text text-center">
-      <h4>チャットする</h4>
-      <p>他のユーザーとチャットできます。</p>
-    </div>
-  </div>
-</div>
-
-<!--footer-->
-<div class="footer">
-  <div class="text-center">
-    <h3>さあ、君も参加しよう!</h3>
-    <br>
-    <%= link_to "新規登録する", new_user_registration_path, class:"btn btn-info" %>
-  </div>
-</div>
-
-
+<% if user_signed_in? %>
+  <%= render 'user_logged_in' %>
+<% else %>
+  <%= render 'user_not_logged_in' %>
+<% end %>
