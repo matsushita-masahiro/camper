@@ -254,30 +254,34 @@
     margin: 10px auto;
   }
   
-  .member {
-    margin-top: 25px;
+  // welcome 
+  .friend {
+    display: flex;
+    align-items: center;
     
-    ul.user-list {
-      list-style: none;
-     
-      li {
-        display: flex;
-        align-items: center;
-        
-        .btn {
-          margin-left: 10px;
-        }
-        
-        img {
-            background: $navbar-bg;
-            border: 1px solid $navbar-bd;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            margin: 5px 5px;
-        }
+    .user-image {
+      margin: 5px 0;
+    }
+    img {
+      margin: 5px 5px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid silver;
+    }
+    
+    .profile {
+      width: 250px;
+      
+      small {
+        margin: 5px 5px;
       }
     }
+    
+    .btn {
+      margin: 5px 10px;
+    }
+    
   }
   
   

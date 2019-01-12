@@ -1,0 +1,19 @@
+<br>
+<% friends.each do |friend|%>
+  <div class="friend">
+    <% if friend.user_id == current_user.id %>
+      <% user = User.find(friend.friend_id) %>
+      <%= render 'share/user_profile', user: user %>
+    <% else %>
+      <% user = User.find(friend.user_id) %> 
+      <%= render 'share/user_profile', user: user %>
+      <!--申請されている場合はボタンを表示-->
+      <% if friend.status == 0 %>
+        <%= form_for friend do |f| %>
+          <%= f.submit '承認する', class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <hr>
+<% end %>

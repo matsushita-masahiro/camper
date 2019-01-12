@@ -5,13 +5,13 @@ Rails.application.routes.draw do
   resources :posts, only:[:index,:show,:create]
   resources :likes, only:[:create]
   resources :users, only:[:update,:index,:show]
-  resources :relationships, only:[:create]
+  resources :relationships, only:[:create,:update]
   resources :rooms, only:[:create,:show]
   resources :events, only:[:index,:create,:show,:edit,:update]
   resources :rooms, only:[:show]
   
   resources :messages do
-    member do
+    collection do
       post 'make'
     end
   end

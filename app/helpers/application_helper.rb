@@ -14,11 +14,17 @@ module ApplicationHelper
   
   def isFriend?(id_a,id_b)
     
-    r1 = Relationship.where(user_id: id_a,friend_id: id_b)
-    r2 = Relationship.where(user_id: id_b,friend_id: id_a)
+    if id_a == id_b
+      return false
+    end
     
-    if id_a==id_b || r1.exists? || r2.exists?
-      return true
+    r1 = Relationship.find_by(user_id: id_a,friend_id: id_b)
+    r2 = Relationship.find_by(user_id: id_b,friend_id: id_a)
+    
+    if  r1.present? 
+      return r1.status
+    elsif r2.present?
+      return r2.status
     else
       return false
     end
@@ -53,5 +59,13 @@ module ApplicationHelper
     
     return room
   end
-
+  
+  def userImage(user)
+    if user.image?
+      user.image.url(:thumb)
+    else
+      'user.jpg'
+    end
+  end 
+  
 end

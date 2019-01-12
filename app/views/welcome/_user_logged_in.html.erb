@@ -23,24 +23,27 @@
         </div>
         
         <div class="tab-pane fade" id="friend-tab">
-          <hr>
-          <% @friends.each do |friend|%>
-            <% if friend.user_id == current_user.id %>
-              <%= User.find(friend.friend_id).name %>
-            <% else %>
-              <%= User.find(friend.user_id).name %> 
-            <% end %>
-            <hr>
-          <% end %>
+          <br>
+          <h4 class="text-center">友達</h4>
+            <%= render 'friend', friends: @friends %>
+          <h4 class="text-center">承認待ち</h4>
+            <%= render 'friend', friends: @pre_friends %>
         </div>
         
         <div class="tab-pane fade" id="chat-tab">
-          <hr>
+          <br>
+          <h4 class= 'text-center'>チャットルーム一覧</h4>
           <% @rooms.each do |room| %>
             <h5><%= link_to "#{room.name}", room_path(room) %></h5>
-            <%= room.entries.first.user.name %>
-            <br>
-            <%= room.entries.second.user.name %>
+            <% if room.entries.first.user.id == current_user.id %>
+              <div class="friend">
+                <%= render  'share/user_profile', user: room.entries.second.user %>
+              </div>
+            <% else %>
+            <div class="friend">
+              <%= render 'share/user_profile', user: room.entries.first.user %> 
+            </div>
+            <% end %>
             <hr>
           <% end %>
         </div>

@@ -1,0 +1,8 @@
+<div class="user-image">
+  <%= image_tag(userImage(user)) %>
+</div>
+<div class="profile">
+  <strong><%= link_to "#{user.name}", user_path(user) %></strong>
+  <br>
+  <small><%= user.intro %></small>
+</div>

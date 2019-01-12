@@ -6,7 +6,8 @@ class WelcomeController < ApplicationController
       @host_events = Event.where(user_id: current_user.id)
       @events = Event.joins(:event_members).where("event_members.user_id=?", current_user.id)
       # Relationshipモデルからfriendを取ってくる
-      @friends = Relationship.where(user_id: current_user.id).or(Relationship.where(friend_id: current_user.id))
+      @pre_friends = Relationship.where(user_id: current_user.id, status: 0).or(Relationship.where(friend_id: current_user.id, status: 0))
+      @friends = Relationship.where(user_id: current_user.id, status: 1).or(Relationship.where(friend_id: current_user.id, status: 1))
       # ルームを取得する
       @rooms = Room.joins(:entries).where('entries.user_id = ?',current_user.id)
     end

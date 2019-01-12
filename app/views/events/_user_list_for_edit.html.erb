@@ -1,0 +1,6 @@
+<% users.each do |user| %>
+  <div class="friend">
+    <%= render 'share/user_profile', user: user %>
+    <%= check_box_tag 'user_id[]', user.id, nil, {} %>
+  </div>
+<% end %>

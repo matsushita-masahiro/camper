@@ -40,9 +40,9 @@
   <%= form_tag change_event_members_path, method: 'post' do %>
   <!--参加者情報-->
   <h4>参加者</h4>
-  <%= render "events/userListForEdit", members: @fixed_members %>
+  <%= render 'user_list_for_edit', users: @users %>
   <h4>参加希望者</h4>
-  <%= render "events/userListForEdit", members: @pre_members %>
+  <%= render 'user_list_for_edit', users: @pre_users %>
   
   <%= hidden_field_tag :event_id, @event.id %>
   <%= submit_tag "参加不参加を変更する",class: "btn btn-primary" %>

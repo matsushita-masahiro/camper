@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       flash[:alert] = "更新に失敗しました"
     end
     
-    redirect_to posts_path
+    redirect_back(fallback_location: root_path)
   end
   
   private

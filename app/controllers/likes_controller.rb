@@ -6,12 +6,12 @@ class LikesController < ApplicationController
     @like = Like.new(user_id: current_user.id,post_id: params[:post_id])
     
     if @like.save
-      flash[:notice] = "いいねに成功しました"
+      flash[:notice] = "いいねしました"
     else
       flash[:alert] = "いいねに失敗しました"
     end
     
-    redirect_to post_url(params[:post_id])
+    redirect_back(fallback_location: root_path)
     
   end 
   

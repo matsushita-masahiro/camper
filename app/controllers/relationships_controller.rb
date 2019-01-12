@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-  before_action :authenticate_user!, :only => [:create]
+  before_action :authenticate_user!, :only => [:create,:update]
   before_action :correct_referrer
   
   def create
@@ -12,6 +12,18 @@ class RelationshipsController < ApplicationController
     end
     
     redirect_to posts_url
+  end
+  
+  def update
+    @relationship = Relationship.find(params[:id])
+    
+    if @relationship.update_attribute(:status,1)
+      flash[:notice] = '承認しました'
+    else
+      flash[:alert] = '承認に失敗しました'
+    end
+    
+    redirect_to root_url
   end
   
   private

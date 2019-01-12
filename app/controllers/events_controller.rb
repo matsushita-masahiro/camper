@@ -22,8 +22,8 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @event_member = EventMember.new
-    @pre_members = EventMember.where(event_id: @event.id,status: 0)
-    @fixed_members = EventMember.where(event_id: @event.id,status: 1)
+    @pre_users = User.joins(:event_members).where('event_members.event_id=? AND event_members.status=?',@event.id,0)
+    @users = User.joins(:event_members).where('event_members.event_id=? AND event_members.status=?',@event.id,1)
     @relationship = Relationship.new
     @message = Message.new
     @room = enterRoom(@event.user_id,current_user.id)
@@ -32,8 +32,8 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
     @user = current_user
-    @pre_members = EventMember.where(event_id: @event.id,status: 0)
-    @fixed_members = EventMember.where(event_id: @event.id,status: 1)
+    @pre_users = User.joins(:event_members).where('event_members.event_id=? AND event_members.status=?',@event.id,0)
+    @users = User.joins(:event_members).where('event_members.event_id=? AND event_members.status=?',@event.id,1)
     @relationship = Relationship.new
     @message = Message.new
     @room = enterRoom(@event.user_id,current_user.id)
