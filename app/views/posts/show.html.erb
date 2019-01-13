@@ -1,44 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <div class="user-wrap">
-        <div class="user-img">
-          <% if @post.user.image? %>
-            <%= image_tag(@post.user.image.url) %>
-          <% else %>
-            <%= image_tag("user.jpg") %>
-          <% end %>
-        </div>
-        <div class="user-info">
-          <h5><%= @post.user.name %></h5>
-          <p><%= @post.user.intro %></p>
-        </div>
-      </div>
-      <div class="btn-wrap">
-        <br>
-        <% if @post.user_id == current_user.id %>
-        <!-- Button trigger modal -->
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#editUserModal">
-            ユーザー情報を編集する
-          </button>
-        <% else %>
-          <% if isFriend?(current_user.id,@post.user_id) %>
-            <span class="btn btn-secondary">申請済み</span>
-          <% else %>
-            <%= form_for @relationship, :url => {controller: 'relationships',action: 'create', friend_id: @post.user.id } do |f| %>
-             <%= f.submit "友達申請", class: "btn btn-success" %>
-            <% end %>
-          <% end %>
-          <p></p>
-          <% if @room.id.nil?  %>
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#startChatModal">
-              チャットを始める
-            </button>
-          <% else %>
-            <%= link_to "チャットする", room_path(@room),class: "btn btn-info" %>
-          <% end %>
-        <% end %>
-      </div>
+      <%= render 'share/userInfo', user: @post.user %>
     </div>
     <div class="col-md-9">
       <div class="article-wrap">

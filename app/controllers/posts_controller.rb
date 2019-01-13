@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   before_action :correct_referrer
   
   def index
-    # 友達のみ（未設定）
-    @friend_posts = Post.all
+    # 友達のみ
+    @friend_posts = Post.joins('INNER JOIN relationships on posts.user_id = relationships.user_id OR posts.user_id = relationships.friend_id').where('relationships.status = ? AND posts.user_id != ?', 1, current_user.id).order('created_at desc')
     # 降順
     @new_posts = Post.order("created_at desc")
     # いいねがない場合表示されない
