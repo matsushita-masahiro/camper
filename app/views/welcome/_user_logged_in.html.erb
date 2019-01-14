@@ -32,7 +32,7 @@
         
         <div class="tab-pane fade" id="chat-tab">
           <br>
-          <h4 class= 'text-center'>チャットルーム一覧</h4>
+          <h4 class='text-center'>チャットルーム一覧</h4>
           <% @rooms.each do |room| %>
             <h5><%= link_to "#{room.name}", room_path(room) %></h5>
             <% if room.entries.first.user.id == current_user.id %>
