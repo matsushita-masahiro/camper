@@ -10,6 +10,7 @@ class WelcomeController < ApplicationController
       @friends = Relationship.where(user_id: current_user.id, status: 1).or(Relationship.where(friend_id: current_user.id, status: 1))
       # ルームを取得する
       @rooms = Room.joins(:entries).where('entries.user_id = ?',current_user.id)
+      @relationship = Relationship.new
     end
   end
 end

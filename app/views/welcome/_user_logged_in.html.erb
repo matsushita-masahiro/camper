@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <%= render 'share/userInfo', user: current_user %>
+      <%= render 'share/userInfo', user: current_user, relationship: @relationship %>
     </div>
     <div class="col-md-9">
       <br>
@@ -18,6 +18,7 @@
           <br>
           <h4 class="text-center">開催イベント</h4>
           <%= render 'share/event', events: @host_events %>
+          <br>
           <h4 class="text-center">参加イベント</h4>
           <%= render 'share/event', events: @events %>
         </div>
@@ -26,6 +27,7 @@
           <br>
           <h4 class="text-center">友達</h4>
             <%= render 'friend', friends: @friends %>
+          <br>
           <h4 class="text-center">承認待ち</h4>
             <%= render 'friend', friends: @pre_friends %>
         </div>

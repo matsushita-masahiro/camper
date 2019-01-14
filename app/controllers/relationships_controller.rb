@@ -11,7 +11,7 @@ class RelationshipsController < ApplicationController
       flash[:alert] = "友達申請に失敗しました"
     end
     
-    redirect_to posts_url
+    redirect_back(fallback_location: root_path)
   end
   
   def update
