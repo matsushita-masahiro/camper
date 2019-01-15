@@ -13,13 +13,19 @@
     <div class="col-md-9">
       <div class="article-wrap">
         <ul class="article-files">
+          <% file_id = 0 %>
           <% @event.files.each do |file| %>
             <li>
               <% if isPicture?(file.url) %>
-                <%= image_tag file.url %>
+                <a href='#'data-toggle="modal" data-target="#replaceFileModal" data-file-id="<%= file_id %>">
+                  <%= image_tag file.url %>
+                </a>
               <% elsif isVideo?(file.url)%>
-                <%= video_tag file.url, controls: true %>
+                <a href='#'data-toggle="modal" data-target="#replaceFileModal">
+                  <%= video_tag file.url, controls: true %>
+                </a>
               <% end %>
+              <% file_id += 1 %>
             </li>
           <% end %>
         </ul>
@@ -51,6 +57,26 @@
   <!--change-formのおわり-->
 </div>
 
+<script>
+  $('#replaceFileModal').on('show.bs.modal', function (event) {
+    var anchor = $(event.relatedTarget);
+    var file_id = anchor.data('file-id');
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'file_id';
+    input.value = file_id;
+    input.id = 'replace-file'
+    var parent = document.getElementsByClassName('edit_event')[0];
+    parent.appendChild(input);
+  });
+  
+  $('#close-modal').click(function(){
+    var input = document.getElementById('replace-file');
+    input.remove();
+  });
+</script>
+
 <!--modal-->
 <!--modal to edit user-->
 <%= render 'share/editUserModal', user: current_user %>
+<%= render 'share/replaceFileModal', event: @event %>

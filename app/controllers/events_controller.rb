@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, :only => [:index,:create,:edit,:show,:update]
+  before_action :authenticate_user!, :only => [:index,:create,:edit,:show,:update,:replace]
   before_action :correct_referrer
   
   def index
@@ -50,6 +50,28 @@ class EventsController < ApplicationController
     end
   end
   
+  def replace
+    @event = Event.find(params[:id])
+    # 選択されたファイルを削除
+    remove_file_at_index(params[:file_id].to_i)
+    
+    unless @event.save
+      flash[:alert] = '変更に失敗しました' 
+      redirect_back(fallback_location: root_path)
+    end
+    
+    # ファイルの追加
+    add_file(params[:event][:files],params[:file_id].to_i)
+    
+    unless @event.save
+      flash[:alert] = '変更に失敗しました' 
+      redirect_back(fallback_location: root_path)
+    end
+    
+    flash[:notice] = '画像を変更しました'
+    redirect_back(fallback_location: root_path)
+  end
+  
   private
     
     def event_params
@@ -63,4 +85,17 @@ class EventsController < ApplicationController
       end
     end
     
+    def add_file(new_files,index)
+      files = @event.files
+      files.insert(index,new_files) 
+      @event.files = files
+    end
+
+    def remove_file_at_index(index)
+      remain_files = @event.files # copy the array
+      deleted_file = remain_files.delete_at(index) # delete the target file
+      deleted_file.try(:remove!) # delete file from S3
+      @event.files = remain_files # assign back
+    end
+      
 end
