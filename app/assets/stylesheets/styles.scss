@@ -202,14 +202,17 @@
     
     ul.article-files {
       list-style: none;
+      display: flex;
+      align-items: center;
       overflow-x: auto;
       white-space: nowrap;
       padding: 0;
       
       li {
-        display: inline-block;
-        
+        margin: 3px;
         img,video {
+          border-radius: 5px;
+          box-shadow: 0 2px 5px #ccc;
           width: 500px;
           vertical-align: middle;
           
@@ -304,6 +307,7 @@
   .friend {
     display: flex;
     align-items: center;
+    justify-content: center;
     
     .user-image {
       margin: 5px 0;
