@@ -16,11 +16,13 @@
   $('#startChatModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     var user_id = button.data('user-id');
+    
     var input = document.createElement('input');
     input.type = 'hidden';
     input.name = 'user_id';
     input.value = user_id;
-    input.id = 'start-chat'
+    input.id = 'start-chat';
+    
     var parent = document.getElementById('new_message');
     parent.appendChild(input);
   });

@@ -10,6 +10,7 @@
           <%= f.file_field :files %>
           <br>
           <%= f.submit '変更する', class: 'btn btn-primary' %>
+          <input type='hidden' name='file_id' value=nil id='event_file_id' >
         <% end %>
       </div>
       <div class="modal-footer">

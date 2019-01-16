@@ -17,11 +17,11 @@
           <% @event.files.each do |file| %>
             <li>
               <% if isPicture?(file.url) %>
-                <a href='#'data-toggle="modal" data-target="#replaceFileModal" data-file-id="<%= file_id %>">
+                <a href='#' data-toggle="modal" data-target="#replaceFileModal" data-event-id="<%= @event.id %>" data-file-id="<%= file_id %> ">
                   <%= image_tag file.url %>
                 </a>
               <% elsif isVideo?(file.url)%>
-                <a href='#'data-toggle="modal" data-target="#replaceFileModal">
+                <a href='#' data-toggle="modal" data-target="#replaceFileModal" data-event-id="<%= @event.id %>" data-file-id="<%= file_id %>">
                   <%= video_tag file.url, controls: true %>
                 </a>
               <% end %>
@@ -59,20 +59,11 @@
 
 <script>
   $('#replaceFileModal').on('show.bs.modal', function (event) {
-    var anchor = $(event.relatedTarget);
-    var file_id = anchor.data('file-id');
-    var input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'file_id';
-    input.value = file_id;
-    input.id = 'replace-file'
-    var parent = document.getElementsByClassName('edit_event')[0];
-    parent.appendChild(input);
-  });
-  
-  $('#close-modal').click(function(){
-    var input = document.getElementById('replace-file');
-    input.remove();
+    var anchor = $(event.relatedTarget)
+    var file_id = anchor.data('file-id')
+    
+    var input = document.getElementById('event_file_id')
+    input.value = file_id
   });
 </script>
 
