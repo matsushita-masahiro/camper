@@ -8,7 +8,9 @@
   </div>
   
   <!--ユーザーリスト-->
-  <%= render 'share/user_list', users: @users, relationship: @relationship %>
+  <div class="user-list-wrap">
+    <%= render 'share/user_list', users: @users, relationship: @relationship %>
+  </div>
 
 </div>
 
