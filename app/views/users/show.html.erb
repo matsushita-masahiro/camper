@@ -13,6 +13,27 @@
   </div>
 </div>
 
+<script>
+  $('#startChatModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var user_id = button.data('user-id');
+    
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'user_id';
+    input.value = user_id;
+    input.id = 'start-chat';
+    
+    var parent = document.getElementById('new_message');
+    parent.appendChild(input);
+  });
+  
+  $('#close-modal').click(function(){
+    var input = document.getElementById('start-chat');
+    input.remove();
+  })
+</script>
+
 <!--modal to edit user-->
 <%= render 'share/editUserModal', user: current_user %>
 

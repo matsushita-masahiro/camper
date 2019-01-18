@@ -8,6 +8,7 @@
       <div class="modal-body">
         <%= form_for message, :url => {controller:"messages",action: "make" } do |f| %>
           <%= f.text_field :body, class: "form-control",placeholder: "ここに入力してください" %>
+          
           <br>
           <%= f.submit "送信する", class: "btn btn-primary" %>
         <% end %>
