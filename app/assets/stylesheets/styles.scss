@@ -14,6 +14,19 @@
     background: #f5f5f5;
   }
   
+  .navbar-right {
+    a {
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+    img {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+    }
+  }
+  
   .tab-content {
     background: #fff;
     border-left: #ddd 1px solid;
@@ -24,7 +37,7 @@
   
   // main
   .main-page {
-    margin: 50px 0 50px;
+    margin: 50px 0 30px;
   }
   
   // form
@@ -62,14 +75,15 @@
   // func
   
   .functions  {
-    margin-top: 50px;
-    height: 275px;
-    vertical-align: middle;
+    margin-top: 0px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
     .func {
-      margin-top: 30px;
+      margin-top: 0px;
       width: 33%;
-      display: inline-block;
       box-sizing: border-box;
       
       .func-icon {
