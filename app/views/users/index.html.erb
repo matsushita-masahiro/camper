@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="text-center">ユーザー一覧</h1>
+  <h1 class="text-center">Users</h1>
   <div class="search-win">
     <%= form_tag(users_path, method: "get") do %>
       <%= text_field_tag :search,'',placeholder: 'ユーザー名',class: 'form-control' %>
@@ -10,6 +10,7 @@
   <!--ユーザーリスト-->
   <div class="user-list-wrap">
     <%= render 'share/user_list', users: @users, relationship: @relationship %>
+    <%= will_paginate @users %>
   </div>
 
 </div>

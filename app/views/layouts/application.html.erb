@@ -26,15 +26,23 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li><%= link_to 'マイページ', root_path %></li>
-              <li><%= link_to "イベント一覧", events_path %></li>
-              <li><%= link_to "投稿一覧",posts_path %></li>
-              <li><%= link_to "ユーザー一覧",users_path %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to image_tag(userImage(current_user)), user_path(current_user) %></li>
+              <li><%= link_to "Events", events_path %></li>
+              <li><%= link_to "Posts",posts_path %></li>
+              <li><%= link_to "Users",users_path %></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <%= image_tag userImage(current_user) %><%= "#{current_user.name}さん"%><span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-header">Menu</li>
+                  <li><%= link_to 'My Page', root_path %></li>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+                </ul>
+              </li>
             <% else %>
-              <li><%= link_to "登録する", new_user_registration_path %></li>
-              <li><%= link_to "ログイン", new_user_session_path %></li>
+              <li><%= link_to "Registar", new_user_registration_path %></li>
+              <li><%= link_to "Log in", new_user_session_path %></li>
             <% end %>
           </ul>
         </div>
@@ -55,6 +63,9 @@
       
       <%= yield %>
       
+    </div>
+    <div class="container">
+      <%= debug(params.inspect) if Rails.env.development? %>
     </div>
   </body>
 </html>
