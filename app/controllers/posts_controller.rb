@@ -10,6 +10,21 @@ class PostsController < ApplicationController
     # いいねがない場合表示されない
     @hot_posts = Post.joins(:like).group(:id).order("count(posts.id) desc").paginate(page: params[:page], per_page: 12)
     @post = Post.new
+    
+    if params[:tab].eql? 'friend'
+      @friend_list = 'active'
+      @friend_tab = 'active in'
+    elsif params[:tab].eql? 'new'
+      @new_list = 'active'
+      @new_tab = 'active in'
+    elsif params[:tab].eql? 'hot'
+      @hot_list = 'active'
+      @hot_tab = 'active in'
+    else
+      @friend_list = 'active'
+      @friend_tab = 'active in'
+    end
+    
   end
   
   def show

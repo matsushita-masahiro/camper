@@ -2,22 +2,22 @@
   <h1 class="text-center">Posts</h1>
   <!--tab-->
   <ul class="nav nav-tabs nav-justified">
-    <li class ='active'><a href="#friend-tab" data-toggle="tab">Friends</a></li>
-    <li><a href="#new-tab" data-toggle="tab">New</a></li>
-    <li><a href="#hot-tab" data-toggle="tab">Hot</a></li>
+    <li class=<%="#{@friend_list}"%>><a href="#friend-tab" data-toggle="tab">Friends</a></li>
+    <li class=<%="#{@new_list}"%>><a href="#new-tab" data-toggle="tab">New</a></li>
+    <li class=<%="#{@hot_list}"%>><a href="#hot-tab" data-toggle="tab">Hot</a></li>
   </ul>
   <!--content-->
   <div class="tab-content">
-    <div class="tab-pane fade active in" id="friend-tab">
-      <%=render 'share/post', posts: @friend_posts %>
+    <div class="tab-pane fade <%="#{@friend_tab}"%>" id="friend-tab">
+      <%= render 'share/post', posts: @friend_posts %>
       <%= will_paginate @friend_posts, :params => { tab: 'friend'} %>
     </div>
-    <div class="tab-pane fade" id="new-tab">
-      <%=render 'share/post', posts: @new_posts %>
+    <div class="tab-pane fade <%="#{@new_tab}"%>" id="new-tab">
+      <%= render 'share/post', posts: @new_posts %>
       <%= will_paginate @new_posts, :params => { tab: 'new'} %>
     </div>
-    <div class="tab-pane fade" id="hot-tab">
-      <%=render 'share/post', posts: @hot_posts %>
+    <div class="tab-pane fade <%="#{@hot_tab}"%>" id="hot-tab">
+      <%= render 'share/post', posts: @hot_posts %>
       <%= will_paginate @hot_posts, :params => { tab: 'hot'}  %>
     </div>
   </div>

@@ -1,17 +1,84 @@
   
   $navbar-bg: #f8f8f8;
   $navbar-bd: #e7e7e7;
+  $light-green: #68b787;
+  $indigo-blue: #0b3661;
+  $g-white: #e8f0de;
   
   * {
     box-sizing: border-box;
   }
   
   body {
-    background: #F5F5F5;
+    background:  $light-green;
+    color: $indigo-blue;
   }
   
-  .nav-bar {
-    background: #f5f5f5;
+  a {
+    color: $indigo-blue;
+  }
+  
+  .nav-tabs.nav-justified > .active > a {
+    color: $indigo-blue;
+    font-weight: bold;
+  }
+  
+  .btn {
+    box-shadow: 0 3px 0px #999;
+    
+    &:active {
+      box-shadow: none;
+      transform: translatey(3px);
+    }
+  }
+  
+  .navbar {
+    background: $light-green;
+    border: none;
+    height: 60px;
+  }
+  
+  .navbar-default .navbar-nav  {
+    display: flex;
+    align-items: center;
+    
+    .dropdown > a {
+      &:hover::after {
+        bottom: 1px;
+      }
+    }
+  }
+   
+    .navbar-default .navbar-nav > li > a {
+        position: relative;
+        color: $indigo-blue;
+        text-decoration: none;
+        font-weight: bold;
+       
+        &::after {
+          position: absolute;
+          bottom: -8px;
+          left: 0;
+          content: '';
+          width: 100%;
+          height: 5px;
+          background: $indigo-blue;
+          opacity: 0;
+          visibility: hidden;
+          transition: .3s;
+        }
+        
+        &:hover::after {
+          bottom: -4px;
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    
+  
+  .navbar > .container-fluid .navbar-brand {
+    color: $indigo-blue;
+    font-weight: bold;
   }
   
   .navbar-right {
@@ -22,9 +89,10 @@
     }
     img {
       margin-right: 8px;
-      width: 25px;
-      height: 25px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
+      
     }
   }
   
@@ -38,7 +106,7 @@
   
   // main
   .main-page {
-    margin: 50px 0 30px;
+    margin: 50px 0 0;
   }
   
   // form
@@ -54,19 +122,18 @@
     height: 600px;
     width: 100%;
     background-size: cover;
-    opacity: 0.8;
-    border-bottom: 1px solid $navbar-bd;
+    opacity: 0.75;
   }
   
   .text-main {
     font-size: 36px;
-    color: white;
+    color: $g-white;
     padding-top: 200px;
   }
   
   .text-sub {
     font-size: 15px;
-    color: white;
+    color: $g-white;
   }
   
   .btn {
@@ -81,6 +148,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: $g-white;
     
     .func {
       margin-top: 0px;
@@ -95,9 +163,7 @@
   
   .footer {
     height: 275px;
-    background-color: $navbar-bg;
     text-align: center;
-    border-top: 1px solid $navbar-bd;
     
     h3 {
      padding-top: 50px;
