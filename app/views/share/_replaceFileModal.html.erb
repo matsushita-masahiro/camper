@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
         <%= form_for(event, :url =>{ controller: 'events', action: 'replace' }, multipart: true) do |f| %>
-          <%= f.file_field :files %>
+          <%= f.file_field :files, accept:'image/jpg,image/jpeg,image/gif,video/mp4,video/mov,video/wmv' %>
           <br>
           <%= f.submit '変更する', class: 'btn btn-primary' %>
           <input type='hidden' name='file_id' value=nil id='event_file_id' >

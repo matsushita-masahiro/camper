@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :event_members, dependent: :destroy
   mount_uploader :image, ImageUploader
   
+  validates :name, length: {maximum: 10}
+  validates :intro, length: {maximum: 140}
+  
   def self.search(search)
     if search
       User.where(['name LIKE ?', "%#{search}%"])

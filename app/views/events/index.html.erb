@@ -35,7 +35,7 @@
           <h5>タイトル</h5>
           <%= f.text_field :title, class: "form-control my-form", placeholder: "タイトル" %>
           <h5>画像・動画</h5>
-          <%= f.file_field :files, multiple: true %>
+          <%= f.file_field :files, multiple: true, accept:'image/jpg,image/jpeg,image/gif,video/mp4,video/mov,video/wmv' %>
           <h5>詳細</h5>
           <%= f.text_area :body, class: "form-control", placeholder: "詳細を入力してください" %>
           <h5>場所</h5>

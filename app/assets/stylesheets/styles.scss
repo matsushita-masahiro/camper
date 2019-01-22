@@ -97,13 +97,25 @@
   }
   
   .tab-content {
-    background: #fff;
+    background: $g-white;
     border-left: #ddd 1px solid;
     border-right: #ddd 1px solid;
     border-bottom: #ddd 1px solid;
     box-shadow: 0 2px 5px #ccc;
   }
   
+  .nav-tabs.nav-justified > .active > a {
+    background: $g-white;
+    color: $indigo-blue;
+    font-weight: bold;
+    border-bottom: 1px solid $g-white;
+  }
+  .nav-tabs.nav-justified > .active > a, .nav-tabs.nav-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:focus {
+    background: $g-white;
+    color: $indigo-blue;
+    font-weight: bold;
+    border-bottom: 1px solid $g-white;
+  }
   // main
   .main-page {
     margin: 50px 0 0;
@@ -148,7 +160,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $g-white;
+    color: $indigo-blue;
     
     .func {
       margin-top: 0px;

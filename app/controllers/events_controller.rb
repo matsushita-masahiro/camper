@@ -9,7 +9,9 @@ class EventsController < ApplicationController
   
   def create
     
-    if @event = Event.create(event_params)
+    @event = Event.new(event_params)
+    
+    if @event.save
       flash[:notice] = "イベントを作成しました"
     else
       flash[:alert] = "イベント作成に失敗しました"
