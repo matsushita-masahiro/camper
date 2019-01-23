@@ -87,4 +87,5 @@ end
 group :production do
   gem 'pg'
   gem 'fog-aws'
+  gem 'rails_12factor'
 end
