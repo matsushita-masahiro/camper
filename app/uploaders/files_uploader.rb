@@ -39,7 +39,7 @@ class FilesUploader < CarrierWave::Uploader::Base
   version :medium, if: :is_picture?
   
   version :medium do
-    process resize_to_fit: [250, 250]
+    process resize_to_fit: [200, 200]
   end
   
   # Add a white list of extensions which are allowed to be uploaded.
