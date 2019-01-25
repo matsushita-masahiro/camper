@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_referrer
   
   def index
-    @users = User.search(params[:search]).paginate(page: params[:page], per_page: 12)
+    @users = User.search(params[:search]).paginate(page: params[:page], per_page: 10)
     @relationship = Relationship.new
     @message = Message.new
   end

@@ -4,11 +4,11 @@ class PostsController < ApplicationController
   
   def index
     # 友達のみ
-    @friend_posts = Post.joins('INNER JOIN relationships on posts.user_id = relationships.user_id OR posts.user_id = relationships.friend_id').where('relationships.status = ? AND posts.user_id != ? AND (relationships.user_id=? OR relationships.friend_id=?)', 1, current_user.id,current_user.id,current_user.id).order('created_at desc').paginate(page: params[:page], per_page: 12)
+    @friend_posts = Post.joins('INNER JOIN relationships on posts.user_id = relationships.user_id OR posts.user_id = relationships.friend_id').where('relationships.status = ? AND posts.user_id != ? AND (relationships.user_id=? OR relationships.friend_id=?)', 1, current_user.id,current_user.id,current_user.id).order('created_at desc').paginate(page: params[:page], per_page: 10)
     # 降順
-    @new_posts = Post.order("created_at desc").paginate(page: params[:page], per_page: 12)
+    @new_posts = Post.order("created_at desc").paginate(page: params[:page], per_page: 10)
     # いいねがない場合表示されない
-    @hot_posts = Post.joins(:like).group(:id).order("count(posts.id) desc").paginate(page: params[:page], per_page: 12)
+    @hot_posts = Post.joins(:like).group(:id).order("count(posts.id) desc").paginate(page: params[:page], per_page: 10)
     @post = Post.new
     
     if params[:tab].eql? 'friend'
