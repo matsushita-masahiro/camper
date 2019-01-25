@@ -38,9 +38,11 @@
     height: 60px;
   }
   
+  
   .navbar-default .navbar-nav  {
     display: flex;
     align-items: center;
+    background: $light-green;
     
     .dropdown > a {
       &:hover::after {
