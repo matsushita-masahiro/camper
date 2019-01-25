@@ -3,8 +3,8 @@ class FilesUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   
-  #500px*500px で保存
-  process resize_to_limit: [500, 500], if: :is_picture?
+  #400px*400px で保存
+  process resize_to_limit: [400, 400], if: :is_picture?
   
   # Choose what kind of storage to use for this uploader:
   if Rails.env.production?
@@ -39,7 +39,7 @@ class FilesUploader < CarrierWave::Uploader::Base
   version :medium, if: :is_picture?
   
   version :medium do
-    process resize_to_fit: [300, 300]
+    process resize_to_fit: [250, 250]
   end
   
   # Add a white list of extensions which are allowed to be uploaded.

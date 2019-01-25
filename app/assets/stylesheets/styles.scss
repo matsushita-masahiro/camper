@@ -125,7 +125,7 @@
   
   // form
   .my-form {
-    width: 30%;
+    width: 300px;
   }
   
   // welcome#index
@@ -195,8 +195,8 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    bottom: 50px;
-    right: 50px;
+    bottom: 25px;
+    right: 25px;
 
     i {
       font-size: 36px;
@@ -208,6 +208,16 @@
     }
   }
   
+  @media (max-width:767px) {
+    .btn-post {
+      width: 50px;
+      height: 50px;
+      i {
+        font-size: 18px;
+        color: white;
+      }
+    }
+  }
   .btn-secondary {
     color: white;
     background-color: #aaa;
@@ -219,7 +229,7 @@
   }
     
   .post-list {
-    padding-top: 25px;
+    padding: 15px;
     text-align: center;
     
     li {
@@ -347,10 +357,22 @@
     }
   }
   
+  @media (max-width:767px){
+    .search-win {
+      display: flex;
+      justify-content: center;
+      
+      form {
+        display: block;
+      }
+    }
+  }
+  
   
   ul.event-list {
     list-style: none;
     text-align: center;
+    padding: 15px;
     
     li {
       background: #fff;
@@ -376,7 +398,6 @@
       
       .event-photo {
         margin-bottom: 5px;
-        width: 300px;
         img, video {
            border-radius: 5px 5px 0 0;
           &:hover {
