@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :event_members, dependent: :destroy
   mount_uploader :image, ImageUploader
   
-  validates :name, length: {maximum: 10}
+  validates :name, length: {maximum: 30}
   validates :intro, length: {maximum: 140}
   
   def self.search(search)
@@ -30,8 +30,9 @@ class User < ApplicationRecord
       user = User.create(
         uid:      auth.uid,
         provider: auth.provider,
+        name:     auth.info.first_name,
         email:    auth.info.email,
-        image: auth.info.picture,
+        image:    auth.info.picture,
         password: Devise.friendly_token[0, 20]
       )
     end
