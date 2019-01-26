@@ -40,13 +40,28 @@
   
   
   .navbar-default .navbar-nav  {
-    display: flex;
-    align-items: center;
     background: $light-green;
     
     .dropdown > a {
       &:hover::after {
         bottom: 1px;
+      }
+    }
+  }
+  
+  @media(min-width: 768px) {
+    .navbar-default .navbar-nav {
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .navbar-nav .open .dropdown-menu {
+      background-color: white;
+      
+      a:hover {
+        background: gray;
       }
     }
   }
