@@ -5,7 +5,7 @@
         <% if isPicture?(event.files.first.url) %>
           <%= link_to image_tag(event.files.first.url(:medium)), event_path(event) %>
         <% elsif isVideo?(event.files.first.url) %>
-          <%= link_to video_tag(event.files.first.url,autoplay: true, loop: true, width: "300px"), event_path(event) %>
+          <%= link_to video_tag(event.files.first.url,autoplay: true, loop: true, width: "200px"), event_path(event) %>
         <% end %>
       </div>
       <div class="event-owner text-left">
