@@ -59,9 +59,12 @@
   @media (max-width: 767px) {
     .navbar-nav .open .dropdown-menu {
       background-color: white;
+      box-shadow: 0 2px 5px #ccc;
       
-      a:hover {
-        background: gray;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+      &:hover {
+        background: $navbar-bg;
       }
     }
   }
